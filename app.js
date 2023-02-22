@@ -17,9 +17,8 @@ app.use(express.json());
 // STEP 1: Apply a default scope onto the searches
 // List of all the instruments in the database - DO NOT MODIFY
 app.get('/instruments', async (req, res, next) => {
-    const allInstruments = await Instrument.findAll()
-
-    res.json(allInstruments);
+    const allInstruments = await Instrument.findAll();
+    return res.json(allInstruments);
 });
 
 // STEP 2: Implement named scopes to their respective routes
@@ -68,5 +67,9 @@ app.get('/', (req, res) => {
 });
 
 // Set port and listen for incoming requests - DO NOT MODIFY
-const port = 5000;
-app.listen(port, () => console.log('Server is listening on port', port));
+if (require.main === module) {
+    const port = 8000;
+    app.listen(port, () => console.log('Server is listening on port', port));
+} else {
+    module.exports = app;
+}

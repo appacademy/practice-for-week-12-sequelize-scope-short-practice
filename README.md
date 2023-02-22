@@ -8,8 +8,9 @@ utilizing scopes to query the available instruments from each store.
 
 ## Getting started
 
-Download starter. `cd` into __server__ folder, and install dependencies using
-`npm install`.
+Download starter.
+
+Install dependencies using `npm install` at the root of the project.
 
 Create a __.env__ file modeled after __.env.example__, specifying the location
 of the database to be created.
@@ -26,9 +27,13 @@ __instrument.js__ and __store.js__ models, as well as various route handlers
 in the __app.js__ file. This will query your database for all of the
 `Instruments` using various scope parameters applied on to multiple routes.
 
+You can run tests for all steps of this practice by running `npm test`, or run
+tests for each step individually by running `npm test test/<name-of-test-file>`
+from the root directory.
+
 ## Step 1: Apply a default scope onto the searches
 
-Take a look at the route handler in __app.js__ for `GET /instruments`. It
+Take a look at the route handler in __app.js__ for `GET /instruments`.
 It returns records for each `Instrument` in your database, ordered by `id`,
 `name`, `type`, `storeId`, `createdAt` and `updatedAt`. Apply a default scope
 onto the __instrument.js__ model that **excludes** the `createdAt` and `updatedAt`
@@ -37,7 +42,7 @@ data.
 Once that default scope is applied to the __instrument.js__ model apply the
 same default scope to the __store.js__ model. Once this is complete run the
 `GET /instruments` and `GET /stores` routes to ensure that the information has
-be queried to exclude the `createdAt` and `updatedAt` data.
+been queried to exclude the `createdAt` and `updatedAt` data.
 
 The `GET /instruments` endpoint should return something like this:
 
@@ -81,7 +86,7 @@ The `GET /instruments/keyboard` endpoint should return this:
 {"id":28,"name":"organ","type":"keyboard","storeId":3}]
 ```
 
-## STEP 3: Implement a named function scope to a dynamic route
+## Step 3: Implement a named function scope to a dynamic route
 
 Take a look at the dynamic route handlers in __app.js__ for
 `GET /stores/:storeId/instruments`.
