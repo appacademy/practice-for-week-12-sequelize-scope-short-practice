@@ -3,7 +3,7 @@
 In this bonus practice, you can implement more modular scopes with
 dynamic named function scopes.
 
-Run mocha tests for this bonus practice by running `npm run test test/04-BONUS-spec` from the root directory.
+Run mocha tests for this bonus practice by running `npm run test test/bonus/04-BONUS-spec` from the root directory.
 
 ## Implement Step 2 for all instrument types
 

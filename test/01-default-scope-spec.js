@@ -1,17 +1,11 @@
-const chai = require('chai');
-const chaiHttp = require('chai-http');
-const server = require('../app');
-
-chai.use(chaiHttp);
+const { setupBefore, setupChai, removeTestDB, runSQLQuery } = require('./utils/test-utils');
+const chai = setupChai();
 const expect = chai.expect;
 
-const { resetDB, seedAllDB } = require('./utils/test-utils');
-
 describe('Step 1: Apply a default scope onto the searches', () => {
-    before(async function () {
-      await resetDB();
-      return seedAllDB();
-    });
+    let DB_TEST_FILE, SERVER_DB_TEST_FILE, models, server;
+    before(async () => ({ server, models, DB_TEST_FILE, SERVER_DB_TEST_FILE } = await setupBefore(__filename)));
+    // after(async () => await removeTestDB(DB_TEST_FILE));  
 
     describe('GET /instruments', () => {
         it('get instruments query excludes the `createdAt` and `updatedAt` data', async () => {

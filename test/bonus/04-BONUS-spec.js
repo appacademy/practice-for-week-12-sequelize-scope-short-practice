@@ -1,17 +1,11 @@
-const chai = require('chai');
-const chaiHttp = require('chai-http');
-const server = require('../app');
-
-chai.use(chaiHttp);
+const { setupBefore, setupChai, removeTestDB, runSQLQuery } = require('../utils/test-utils');
+const chai = setupChai();
 const expect = chai.expect;
 
-const { resetDB, seedAllDB } = require('./utils/test-utils');
-
 describe('BONUS: Implement Step 2 for all instrument types', () => {
-    before(async function () {
-      await resetDB();
-      return seedAllDB();
-    });
+    let DB_TEST_FILE, SERVER_DB_TEST_FILE, models, server;
+    before(async () => ({ server, models, DB_TEST_FILE, SERVER_DB_TEST_FILE } = await setupBefore(__filename)));
+    after(async () => await removeTestDB(DB_TEST_FILE));  
 
     describe('GET /instruments/:type', () => {
         it('endpoint returns only instruments of the given type (percussion)', async () => {
@@ -61,10 +55,9 @@ describe('BONUS: Implement Step 2 for all instrument types', () => {
 });
 
 describe('BONUS: Implement another named function scope to a dynamic route', () => {
-    before(async function () {
-      await resetDB();
-      return seedAllDB();
-    });
+    let DB_TEST_FILE, SERVER_DB_TEST_FILE, models, server;
+    before(async () => ({ server, models, DB_TEST_FILE, SERVER_DB_TEST_FILE } = await setupBefore(__filename)));
+    after(async () => await removeTestDB(DB_TEST_FILE));  
 
     describe('GET /stores/:storeId/instruments/:type', () => {
         it('returns all the instruments of store 2 that are keyboards', async () => {
