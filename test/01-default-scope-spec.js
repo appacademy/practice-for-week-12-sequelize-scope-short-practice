@@ -5,7 +5,7 @@ const expect = chai.expect;
 describe('Step 1: Apply a default scope onto the searches', () => {
     let DB_TEST_FILE, SERVER_DB_TEST_FILE, models, server;
     before(async () => ({ server, models, DB_TEST_FILE, SERVER_DB_TEST_FILE } = await setupBefore(__filename)));
-    // after(async () => await removeTestDB(DB_TEST_FILE));  
+    after(async () => await removeTestDB(DB_TEST_FILE));
 
     describe('GET /instruments', () => {
         it('get instruments query excludes the `createdAt` and `updatedAt` data', async () => {

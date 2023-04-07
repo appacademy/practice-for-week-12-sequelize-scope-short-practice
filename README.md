@@ -123,4 +123,12 @@ The `GET /stores/2/instruments` endpoint should return:
 You are now able to use default scopes and named scopes in **Sequelize** with
 your models. Hoorayy!!
 
+## Submission
+
+Submit your work.
+
+1. Delete the `node_modules` folder
+2. Zip up the project folder
+3. Submit the zip file
+
 [stores-instruments-db-schema]: https://appacademy-open-assets.s3.us-west-1.amazonaws.com/Modular-Curriculum/content/week-12/stores-instruments-db-schema.png
