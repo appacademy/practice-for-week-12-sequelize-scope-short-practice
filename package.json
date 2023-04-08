@@ -7,8 +7,8 @@
     "start": "node app.js",
     "dev": "nodemon app.js",
     "reset-files": "node test/utils/reset-files.js",
-    "test": "mocha --timeout 60000",
-    "test-with-json": "npm run reset-files && mocha --reporter json --timeout 100000"
+    "test": "NODE_ENV=test mocha --timeout 60000",
+    "test-with-json": "npm run reset-files && NODE_ENV=test mocha --reporter json --timeout 100000"
   },
   "keywords": [],
   "author": "",
