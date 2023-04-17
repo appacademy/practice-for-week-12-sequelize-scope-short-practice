@@ -1,4 +1,4 @@
-## BONUS Practice: Sequelize Scopes
+# BONUS Practice: Sequelize Scopes
 
 In this bonus practice, you can implement more modular scopes with
 dynamic named function scopes.

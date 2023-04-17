@@ -141,9 +141,9 @@ module.exports.getAllSeederFiles = () => {
 };
 
 // all files in the /test/original-files folder will replace those files in the
-  // equivalent path in the server/ directory
+  // equivalent path in the root directory
 const replaceFilesScript = `
-destination_dir=./server
+destination_dir=.
 original_dir=./test/original-files
 find "$original_dir" -type f -exec bash -c 'cp -v $0 "\${0/$1/$2}"' {} $original_dir $destination_dir \\;
 `;
@@ -172,13 +172,12 @@ module.exports.setupBefore = async (filename) => {
   // for all server files in cache, delete it from the cache
   const path = require('path');
   DB_TEST_FILE = 'db/' + path.basename(filename, '.js') + '.db';
-  SERVER_DB_TEST_FILE = DB_TEST_FILE;
-  process.env.DB_TEST_FILE = SERVER_DB_TEST_FILE;
+  process.env.DB_TEST_FILE = DB_TEST_FILE;
   const server = require(path.resolve(process.cwd(), 'app'));
   const models = require(path.resolve(process.cwd(), 'db', 'models'));
   await resetDB(DB_TEST_FILE);
   await seedAllDB(DB_TEST_FILE);
-  return { server, models, DB_TEST_FILE, SERVER_DB_TEST_FILE };
+  return { server, models, DB_TEST_FILE };
 };
 
 module.exports.setupChai = () => {
